@@ -1140,7 +1140,7 @@ s0_skydome_animated = true
 s0_skydome_gradient_start_color = #0db1fdff
 s0_skydome_gradient_end_color = #feffc7ff
 s0_active_opacity = 25.000000
-s0_inactive_opacity = 40.000000
+s0_inactive_opacity = 80.000000
 s0_transparent_manual_only = false
 
 [maximumize]
