@@ -1,0 +1,22 @@
+[ui]
+username = Maciek Swiech <swiechfedora@gmail.com>
+verbose = True
+merge = meld
+editor = vim
+
+[extensions]
+color = 
+pager =
+hgshelve = ~/.hgext/hgshelve.py
+
+[merge-tools]
+filemerge.executable = vimdiff
+filemerge.args = $local $other
+filemerge.checkchanged = true
+filemerge.gui = true
+
+[tortoisehg]
+vdiff = vimdiff
+editor = gvim
+tabwidth = 4
+pushafterci = True
