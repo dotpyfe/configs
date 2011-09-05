@@ -204,6 +204,7 @@ alias rm='rm -i'
 alias moar='ssh www.dotpyfe.net'
 alias spdtest='wget http://speedtest.onsbrabantnet.nl/files/1024MByte.bin'
 alias t='~/todo.sh'
+alias ll='ls -al'
 ####################################### }}}
 
 
