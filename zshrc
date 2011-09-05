@@ -725,7 +725,7 @@ fi
 
 # Finally, let's set up our interface. {{{
 if [[ "$PROMPT" == "$old_vals[PROMPT]" ]]; then
-    PROMPT=$PR_COLOR"%B[%n@%m %D{%H:%M}]%(2L.{$SHLVL}.)\%#%b "
+    PROMPT=$PR_COLOR"%B[%n@%m %D{%H:%M}]%#%b "
 fi
 PROMPT2=$PR_GREEN'%B%_>%b '
 RPROMPT=$PR_CYAN'%B[%~]%(?..{%?})%b' # For reference only. This is clobbered by update_rprompt().
