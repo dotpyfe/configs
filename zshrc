@@ -18,7 +18,7 @@ case `uname -s` in
     set_prop OS Ossix
     ;;
 esac
-get all your hwk dont
+
 # Installed programs?
 for i in acpi keychain git hg; do
     if [ `whence $i` ]; then
