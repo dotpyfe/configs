@@ -8,4 +8,5 @@
     interactive = auto
     diff = auto
     status = auto
-
+[github]
+    user = dotpyfe
