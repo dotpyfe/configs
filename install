@@ -11,3 +11,9 @@ cp hgrc ~/.hgrc
 cp gitconfig ~/.gitconfig
 cp dir_colors ~/.dir_colors
 cp -r hgext ~/.hgext
+
+echo "changing shell to ZSH"
+chsh -s $(which zsh)
+
+echo "adding vimrc for root, you better be in WHEEL!"
+sudo cp vimrc /root/.vimrc
