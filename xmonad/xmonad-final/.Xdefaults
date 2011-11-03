@@ -1,0 +1,95 @@
+! Transparency
+URxvt.depth:         32
+!This worked in XFCE, not in Xmonad?
+!URxvt.background:    rgba:1111/1111/1111/dddd
+URxvt.background:    rgba:0000/0000/0000/cccc
+
+! scrollbar style - rxvt (default), plain (most compact), next, or xterm
+!URxvt*scrollstyle:xterm
+URxvt*scrollBar:     false
+URxvt.saveLines:     32767
+
+! Font
+URxvt.font:          xft:Terminus:antialias=true:size=6
+URxvt.boldFont:      xft:Terminus:style=bold:antialias=true:size=6
+
+! Perl
+URxvt.perl-ext-common:default,matcher
+
+! Clickable Links
+URxvt.urlLauncher:   google-chrome
+URxvt.matcher.button:1 
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+
+! Icon
+URxvt*iconFile:      /usr/share/icons/Tango/scalable/apps/xfce-terminal.svg
+
+! Colors et. al.
+URxvt*cursorColor:   darkorange1
+URxvt*foreground:    grey75
+URxvt*saveLines:     7777
+URxvt*cursorBlink:   false
+URxvt*termName:      rxvt-256color
+URxvt*colorBD:       orange
+
+! from davidbeckingsale
+
+URxvt*colorUL:       #c5f779
+URxvt*underlineColor:#c5f779
+URxvt.urgentOnBell:  true
+
+! terminal colors ------------------------------------------------------------
+
+! tangoesque scheme
+!*background:         #222222
+!*foreground:         #aaaaaa
+! Black
+*color0:             #000000
+*color8:             #555753
+! Red
+*color1:             #ff6565
+*color9:             #ff8d8d
+! Green
+*color2:             #93d44f
+*color10:            #c8e7a8
+! Yellow
+*color3:             #eab93d
+*color11:            #ffc123
+! Blue
+*color4:             #204a87
+*color12:            #3465a4
+! Mangenta
+*color5:             #ce5c00
+*color13:            #f57900
+! Cyan
+*color6:             #89b6e2
+*color14:            #46a4ff
+! White
+*color7:             #cccccc
+*color15:            #ffffff
+
+
+!black
+xterm*color0:        #353535
+xterm*color8:        #666666
+!red
+xterm*color1:        #AE4747
+xterm*color9:        #EE6363
+!green
+xterm*color2:        #556B2F
+xterm*color10:       #9ACD32
+!brown/yellow
+xterm*color3:        #DAA520
+xterm*color11:       #FFC125
+!blue
+xterm*color4:        #6F99B4
+xterm*color12:       #7C96B0
+!magenta
+xterm*color5:        #8B7B8B
+xterm*color13:       #D8BFD8
+!cyan
+xterm*color6:        #A7A15E
+xterm*color14:       #F0E68C
+!white
+xterm*color7:        #DDDDDD
+xterm*color15:       #FFFFFF

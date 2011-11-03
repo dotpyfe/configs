@@ -1,0 +1,28 @@
+gap_y -1000
+ 
+background no
+double_buffer yes 
+out_to_console yes 
+own_window yes 
+own_window_type desktop
+update_interval 1.0 
+ 
+TEXT
+  ^fg(\#ffd700)^i(.icons/xbm8x8/phones.xbm)^fg() ^fg(\#7F9F7F)${mpd_title} - ${mpd_artist}^fg()\
+  ^fg(\#ffd700)^i(.icons/xbm8x8/spkr_01.xbm)^fg() ^fg(\#7F9F7F)${mpd_vol}%^fg()\
+  ^fg(\#0000ff)^i(.icons/xbm8x8/pacman.xbm)^fg() ^fg(\#7F9F7F)Updates: ${execi 300: pacman -Qu | wc -l}^fg()\
+  ^fg(\#7fff00)^i(.icons/xbm8x8/cpu.xbm)^fg() ^fg(\#8CD0D3)${cpu cpu0}%^fg()\
+  ^fg(\#7fff00)^i(.icons/xbm8x8/cpu.xbm)^fg() ^fg(\#8CD0D3)${cpu cpu1}%^fg()\
+  ^fg(\#dc143c)^i(.icons/xbm8x8/mem.xbm)^fg() ^fg(\#7F9F7F)$memperc%^fg()\
+  ^fg(\#b22222)^i(.icons/xbm8x8/ac_01.xbm)^fg() ^fg(\#8CD0D3)${battery_short BAT0}^fg()\
+  ^fg(\#00bfff)^i(.icons/xbm8x8/arch_10x10.xbm)^fg()\
+  ^fg(\#556b2f)^i(.icons/xbm8x8/clock.xbm)^fg() ^fg(\#F0DFAF) [${time %m.%e.%Y %H:%M}]^fg()\
+################
+# network flow #
+################
+#  ^i(.icons/xbm8x8/net_up_02.xbm) ^fg(\#DCA3A3)${upspeed wlan0}^fg()\
+#  ^i(.icons/xbm8x8/net_down_02.xbm) ^fg(\#7F9F7F)${downspeed wlan0}^fg()\
+###########
+# cpufreq #
+###########
+# left out  @ ^fg(\#DCA3A3)${freq_g}GHz^fg()
