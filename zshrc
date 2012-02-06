@@ -203,8 +203,10 @@ esac
 alias rm='rm -i'
 alias moar='ssh www.dotpyfe.net'
 alias spdtest='wget http://speedtest.onsbrabantnet.nl/files/1024MByte.bin'
-alias t='~/todo.sh'
-alias ll='ls -al'
+alias ll='ls -alh'
+alias skysaw='ssh msw978@newskysaw.cs.northwestern.edu'
+alias testbed='ssh test@heidegger.cs.northwestern.edu'
+alias honey='ssh msw978@honeynut-master.cs.northwestern.edu'
 ####################################### }}}
 
 
