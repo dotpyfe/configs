@@ -1,124 +1,283 @@
-"""""""""""""""
-" Options.
-" death to vi, long live vim
+" Maciek's vimrc
+" current list of extensions I'm using:
+"
+" Pathogen: easy modular management of plugins
+" Tagbar: Taglist++, source code browsing (requires exuberant-ctags pkg
+"   >=v5.5) (currently mapped to <leader>1)
+" SuperTab: Insert-mode tab completion
+"	Surround: easy mappings for parens, brackets, quotes, etc (e.g. cs'" to
+"	  change single quotes to double quotes
+"	NERDTree: better file explorer, i.e. replaces :Ex and :Vex (mapped to
+"   <leader>2)
+"	NERDCommenter: easy mappings for inserting comments ('<leader>cc' etc in cmd mode to use)
+"	Fugitive: git integration (e.g. :Gstatus)
+"	Argtextobj: allows function arguments to be edited as vim text objects
+"	Indenttextobj: allows text at same indent level to be edited as vim text
+"	objects (particularly useful for, e.g., Python)
+"	Grepvim: grep integration (use :Grep, among other things)
+"	Bufexplorer: easy buffer navigation (just use <leader>be)
+"	FuzzyFinder: search files, buffers, tags etc. (e.g. <leader>ff)
+"   -> L9lib: required for FuF
+" AutoloadCscope: forces Cscope to recurse up parent dirs to find the
+"   database (build db with cscope -R -b, add -q to build inverted index for
+"   quicker lookups, add -k when doing kernel/lib hacking to tell cscope to
+"   ignore /usr/include)
+" SnipMate: great for auto-completion of common tags,func templates etc
+" AutoComplPop: pop-down menu for autocompletion
+
+" set up pathogen for easy plugin installation and mgmt
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+" ================
+" GENERAL SETTINGS
+" ================
+
+""""""""""""""""""""""
+" Colors and Fonts
+""""""""""""""""""""""
+syntax enable
+
+set bg=dark
+
+" Terminal 256 colors
+set t_Co=256
+set encoding=utf8
+try
+    lang en_US
+catch
+endtry
+
+set ffs=unix,dos,mac
+
+" show line numbers
+set number
+
+" vive le vim!
 set nocompatible
 
-" the outside world
-set encoding=utf8
-set shell=/bin/zsh
-
-" affordances
-syntax on
-set title
-set cursorline
-set scrolloff=2 "scroll ahead of the cursor
-set number
-set ruler
-set showcmd "enable a couple of useful realtime prints on the status bar
-set showmatch
-set bg=dark
-set shortmess+=aO
-
-" wildmenu
-set wildmenu
+" better filename completion in vim command line
 set wildmode=list:longest,full
+set wildmenu
 
-" identation, tabs, and text wrap
-set autoindent
-set smartindent
+" underline!
+set cursorline
+"set cursorcolumn
 
+" tell me when i'm in insert or visual mode
+set showmode
+
+" show me the command being typed currently
+set showcmd
+
+" don't ding at me
+set noerrorbells
+set novisualbell 
+
+" save my undo history for this buff along with the file
+" could save some headaches
+" the // causes fully qualified path to be in the swp name
+set undofile
+set undodir=~/.vim/tmp/undo//,~/.tmp//,/tmp//
+" max number of undos; default is 1000 on UNIX
+"set undolevels=500
+" max number of lines to save in the .un file, default is 10000
+"set undorelad=500
+
+" where to put swp files
+set directory=~/.vim/tmp/swp//,~/.tmp//,/tmp//
+
+" don't create foo~ files
+set nobackup
+
+" to try to get rid of 'hit ENTER to continue' prompts
+set shortmess=a
+set cmdheight=2
+
+" always give me at least 3 lines before and after cursor
+set scrolloff=3
+
+" tab settings
 set expandtab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
+set smarttab
 
-set tw=80
+" avoid that damn "no write since last change" warning when
+" switching buffers
+set hidden
+
+set encoding=utf-8
+set shell=/bin/zsh
+
+" tell Ctags to recurse up directories 
+" for the tags file
+set tags=tags;/
+" use cscope in addition to ctags
+source ~/.vim/cscope_maps.vim
+
+" aesthetics
+set background=dark
+
+" not all terms are 256 :(
+if &t_Co == 256
+    colorscheme molokai
+endif
+
+" show status line at bottom 0=never, 1=when > 1 window open
+" 2=always
+set laststatus=2
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+"              | | | | |  |   |      |  |     |    |
+"              | | | | |  |   |      |  |     |    + current 
+"              | | | | |  |   |      |  |     |       column
+"              | | | | |  |   |      |  |     +-- current line
+"              | | | | |  |   |      |  +-- current % into file
+"              | | | | |  |   |      +-- current syntax in 
+"              | | | | |  |   |          square brackets
+"              | | | | |  |   +-- current fileformat
+"              | | | | |  +-- number of lines
+"              | | | | +-- preview flag in square brackets
+"              | | | +-- help flag in square brackets
+"              | | +-- readonly flag in square brackets
+"              | +-- rodified flag in square brackets
+"              +-- full path to file in the buffer
+
+
+" with these, if you include capitals in a search it'll do
+" the right thing, if you just use lowercase,
+" it'll be case insensitive
+set ignorecase
+set smartcase
+
+" %s/p/r -> %s/p/r/g
+set gdefault
+
+" highlight search results as I type
+set incsearch
+set showmatch
+" but allow me to get rid of the highlighting afterwards with ,space
+nnoremap <CR> :noh<CR>
+
+" line wrapping
 set wrap
-set linebreak
+set textwidth=80
+set formatoptions=qrtn1
+" tell me when i'm running on too long
+"set colorcolumn=85
 
-" there is a backspace option
+"set up code folding
+set nofoldenable     "don't fold by default
+set foldmethod=indent   " fold on indentations
+set foldnestmax=10   "only fold up to 10 levels
+set foldlevel=1     " only show me first fold level
+
+filetype plugin indent on
+
+" save buffers when we move away from vim
+"au FocusLost * :wa
+
+" allow bs to erase previously entered chars, autoindent, \n's etc
 set backspace=indent,eol,start
 
-" text selection
-set mouse=a
-set virtualedit=block
+" When opening a new line and no filetype-specific indenting is enabled, keep
+" the same indent as the line you're currently on. Useful for READMEs, etc.
+set autoindent
+set smartindent
 
-" search
-set smartcase
-set incsearch
-set hlsearch
-
-" buffers
-set hidden
-set switchbuf=usetab
-
-" backup and swap
-set nobackup
-set backupdir=~/.vim-tmp,~/.tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,/tmp
+" let me use mouse in all modes
+"set mouse=a
 
 
+" Tell vim to remember certain things when we exit
+" "  '10  :  marks will be remembered for up to 10 previously edited files
+" "  "100 :  will save up to 100 lines for each register
+" "  :20  :  up to 20 lines of command-line history will be remembered
+" "  %    :  saves and restores the buffer list
+" "  n... :  where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
 
-"""""""""""""""
-" Remaps.
-let mapleader = ","
-let g:mapleader = ","
+" do the restore
+function! ResCur()
+	if line("'\"") <= line("$")
+		normal! g`"
+		return 1
+	endif
+endfunction
 
-" Serious Save
-cmap w!! w !sudo tee % > /dev/null
-
-" fast save
-nmap <leader>w :w<CR>
-
-" fast buffer switch
-nnoremap <leader>1 :1b<CR>
-nnoremap <leader>2 :2b<CR>
-nnoremap <leader>3 :3b<CR>
-nnoremap <leader>4 :4b<CR>
-nnoremap <leader>5 :5b<CR>
-nnoremap <leader>6 :6b<CR>
-nnoremap <leader>7 :7b<CR>
-nnoremap <leader>8 :8b<CR>
-nnoremap <leader>9 :9b<CR>
-nnoremap <leader>0 :10b<CR>
-nnoremap <leader><leader> <C-^>
-
-" clear highlighting on enter
-nnoremap <CR> :noh<CR><CR>
-
-" vimnav for windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" alternate escape - maybe not so useful
-imap <M-Space> <ESC>
-
-" vimline on demand
-imap <ESC>v vim:foldmethod=marker autoindent expandtab shiftwidth=4 filetype=
+augroup resCur
+	autocmd!
+	au BufWinEnter * call ResCur()
+augroup END
 
 
+" === KEY MAPPINGS ===
 
-"""""""""""""""
-" Plugins.
-" miniBufExplorer
-let g:miniBufExplModSelTarget = 1
+" change <leader> key. defaults is '\', hard to reach
+let mapleader=","
 
-" filetype
-filetype plugin indent on
-autocmd FileType xml set shiftwidth=2 tabstop=2 softtabstop=2
-" Use the following responsibly.
-autocmd FileType gitcommit set nolinebreak
+" use perl-like regexes in search
+"nnoremap / /\v
+"vnoremap / /\v
 
-" taglist
-nnoremap <silent> <F8> :TlistToggle<CR>
+" use Tab instead of '%' to match bracket pairs
+" nnoremap <tab> %
+" vnoremap <tab> %
 
-" and also views
-autocmd BufWritePost, BufLeave, WinLeave ?* mkview
-autocmd BufReadPre ?* silent loadview
+" quick window split with ,s[vh] (vertical, horizontal)
+nnoremap <leader>sv <C-w>v<C-w>l
+nnoremap <leader>sh <C-w>s<C-w>j
+
+" move around splits faster
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 
-" What's a vimrc without a vimline?
-"vim:foldmethod=marker autoindent expandtab shiftwidth=4 filetype=vim
-"
+" key mapping to toggle spell checker (apparently this will do the right thing in
+" source files. Use zg to whitelist a word
+nnoremap <leader>sp :setlocal spell!<CR>
+
+
+" let me edit my vimrc quickly with ,ev
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
+" autoreload vimrc when it's edited
+autocmd! bufwritepost vimrc source ~/.vim/vimrc
+" quickly reload vimrc
+nnoremap <leader>rv :source $MYVIMRC<CR>
+
+" quicker than reaching for escape
+inoremap jj <ESC>
+
+" quick save
+nnoremap <leader>w :w<CR>
+
+" sudo save
+cnoremap w!! w !sudo tee % > /dev/null
+
+set title
+
+" =======================
+" PLUGIN-SPECIFIC OPTIONS
+" =======================
+
+"=== SuperTab ===
+" tell SuperTab to use vim's built-in OmniComplete
+let g:SuperTabDefaultCompletionType = "context"
+
+"=== Tagbar ===
+"make TagBar a little easier: press ',1' in command mode to bring it up
+let g:tagbar_usearrows = 1
+nnoremap <leader>1 :TagbarToggle<CR>
+" Uncomment this line to open Tagbar on startup for code files
+" au BufRead *.[ch],*.cpp,*.java,*.js,*.py,*.pl TagbarOpen
+
+"=== NERDTree ===
+nnoremap <leader>2 :NERDTreeToggle<CR>
+
+"=== FuzzyFinder ===
+nnoremap <leader>ff :FufFile<CR>   " search files
+nnoremap <leader>fb :FufBuffer<CR> " search buffers
+nnoremap <leader>fd :FufDir<CR>    " search directories
