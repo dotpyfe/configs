@@ -42,6 +42,7 @@ set bg=dark
 
 " Terminal 256 colors
 set t_Co=256
+
 set encoding=utf8
 try
     lang en_US
