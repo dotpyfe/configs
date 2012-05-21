@@ -7,11 +7,11 @@ echo "copying environmental variables"
 cp zshrc ~/.zshrc
 cp vimrc ~/.vimrc
 cp tmux.conf ~/.tmux.conf
-cp hgrc ~/.hgrc
+#cp hgrc ~/.hgrc
 cp gitconfig ~/.gitconfig
-cp dir_colors ~/.dir_colors
-cp -r hgext ~/.hgext
-cp Xdefaults ~/.Xdefaults
+#cp dir_colors ~/.dir_colors
+#cp -r hgext ~/.hgext
+#cp Xdefaults ~/.Xdefaults
 
 echo "changing shell to ZSH"
 chsh -s $(which zsh)
