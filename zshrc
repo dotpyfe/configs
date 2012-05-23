@@ -516,8 +516,6 @@ abbreviations=(
     'df'                'df -hT --total'
     'lame'              'lame -V 0 -q 0 -m j --replaygain-accurate --add-id3v2'
     'ps'                'ps axwwo user,pid,ppid,pcpu,cputime,nice,pmem,rss,lstart=START,stat,tname,command'
-    'pacman'            'pacman-color'
-    'sudo pacman'       'sudo pacman-color'
     'sudo yum remove'   'sudo yum remove --remove-leaves'
 )
 
