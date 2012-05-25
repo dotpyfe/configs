@@ -5,7 +5,7 @@ echo "copying environmental variables"
 #TODO: check if all the necessary programs actually exist... warn if not!
 
 cp zshrc ~/.zshrc
-cp vimrc ~/.vimrc
+#cp vimrc ~/.vimrc
 cp tmux.conf ~/.tmux.conf
 #cp hgrc ~/.hgrc
 cp gitconfig ~/.gitconfig
