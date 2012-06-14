@@ -39,8 +39,9 @@ iptables -A INPUT -p tcp -j REJECT --reject-with tcp-rst
 iptables -A INPUT -j REJECT --reject-with icmp-proto-unreachable
 
 # tcp rules
-iptables -A TCP -p tcp --dport 22 -j ACCEPT
-iptables -A TCP -p tcp --dport 80 -j ACCEPT
+iptables -A TCP -p tcp --dport ssh -j ACCEPT
+iptables -A TCP -p tcp --dport http -j ACCEPT
+iptables -A TCP -p tcp --dport https -j ACCEPT
 
 # udp rules
 iptables -A UDP -p udp -j DROP
