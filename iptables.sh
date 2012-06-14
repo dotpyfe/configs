@@ -6,6 +6,7 @@ iptables -F
 # make some more groups 
 iptables -N TCP
 iptables -N UDP
+iptables -N INBOUNDCONN
 
 # general rules
 iptables -P INPUT DROP
@@ -13,8 +14,12 @@ iptables -P FORWARD DROP
 iptables -P OUTPUT ACCEPT
 
 # allow established and lo
-iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp -m conntrack --ctstate RELATED,ESTABLISHED -j INBOUNDCONN
 iptables -A INPUT -i lo -j ACCEPT
+
+# log all connections
+iptables -A INBOUNDCONN -p tcp -j LOG --log-prefix ' INBOUND TCP ' --log-level 4
+iptables -A INBOUNDCONN -p tcp -j ACCEPT
 
 # dont allow invalid
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
