@@ -39,6 +39,9 @@ iptables -A INPUT -j REJECT --reject-with icmp-proto-unreachable
 iptables -A TCP -p tcp --dport ssh -j ACCEPT
 iptables -A TCP -p tcp --dport http -j ACCEPT
 iptables -A TCP -p tcp --dport https -j ACCEPT
+# synergy
+iptables -A TCP -p tcp --dport 24800 -j ACCEPT
+# JSS proxy
 iptables -A TCP -p tcp -s 165.124.0.0/16 --dport 8080 -j ACCEPT
 
 # udp rules
