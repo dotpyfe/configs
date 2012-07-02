@@ -5,13 +5,9 @@ echo "copying environmental variables"
 #TODO: check if all the necessary programs actually exist... warn if not!
 
 cp zshrc ~/.zshrc
-#cp vimrc ~/.vimrc
 cp tmux.conf ~/.tmux.conf
-#cp hgrc ~/.hgrc
 cp gitconfig ~/.gitconfig
-#cp dir_colors ~/.dir_colors
-#cp -r hgext ~/.hgext
-#cp Xdefaults ~/.Xdefaults
+cp bashrc ~/.bashrc
 
 echo "changing shell to ZSH"
 chsh -s $(which zsh)
