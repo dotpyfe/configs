@@ -43,6 +43,7 @@ iptables -A TCP -p tcp --dport https -j ACCEPT
 iptables -A TCP -p tcp --dport 24800 -j ACCEPT
 # JSS proxy
 iptables -A TCP -p tcp -s 165.124.0.0/16 --dport 8080 -j ACCEPT
+iptables -A TCP -p tcp -m mac --mac-source a0:0b:ba:8f:19:1a --dport 8080 -j ACCEPT
 
 # udp rules
 iptables -A UDP -p udp -j DROP
