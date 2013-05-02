@@ -3,4 +3,4 @@
 	url = git://github.com/seebi/tmux-colors-solarized.git
 [submodule "tmux-powerline"]
 	path = tmux-powerline
-	url = git://github.com/dotpyfe/tmux-powerline.git
+	url = git://github.com/erikw/tmux-powerline.git
